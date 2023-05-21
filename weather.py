@@ -1,7 +1,7 @@
 import datetime
 
 def print_temperature(date, min_temperature, max_temperature):
-    print(f"{date};{min_temperature};{max_temperature}")
+    print(f"{date},{min_temperature},{max_temperature}")
 
 def main():
 
