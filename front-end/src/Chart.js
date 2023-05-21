@@ -16,6 +16,8 @@ export default class Chart extends React.Component {
     const div = d3.select("#chart");
     const width = div.node().clientWidth;
     const height = div.node().clientHeight;
+    const blue = d3.schemeTableau10[0];
+    const red = d3.schemeTableau10[2];
     const svg = LineChart(data, {
       x: d => d.date,
       y: d => d.temperature,
@@ -23,7 +25,7 @@ export default class Chart extends React.Component {
       yLabel: "Temperature",
       width: width,
       height: height,
-      color: "steelblue",
+      color: (variant) => variant == "max" ? red : blue,
     });
     const existingSvg = div.select("svg");
     if (existingSvg.size() == 0) {
