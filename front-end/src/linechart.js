@@ -43,7 +43,7 @@ export default function LineChart(data, {
 
     // Compute default domains, and unique the z-domain.
     if (xDomain === undefined) xDomain = d3.extent(X);
-    if (yDomain === undefined) yDomain = [0, d3.max(Y, d => typeof d === "string" ? +d : d)];
+    if (yDomain === undefined) yDomain = [d3.min(Y, d => typeof d === "string" ? +d : d), d3.max(Y, d => typeof d === "string" ? +d : d)];
     if (zDomain === undefined) zDomain = Z;
     zDomain = new d3.InternSet(zDomain);
 
