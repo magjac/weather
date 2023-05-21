@@ -1,14 +1,17 @@
+#!/usr/bin/env python3
+
 import datetime
 
 def print_temperature(date, min_temperature, max_temperature):
-    print(f"{date},{min_temperature},{max_temperature}")
+    print(f"{date},min,{min_temperature}")
+    print(f"{date},max,{max_temperature}")
 
 def main():
 
     with open("Utomhus_2023-05-15.csv") as fp:
         lines = fp.readlines()
 
-    print_temperature("date", "min_temperature", "max_temperature")
+    print("date,variant,temperature")
 
     current_date = None
     for line in lines:
