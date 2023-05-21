@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 async function fetchData() {
-  const data = await d3.dsv(",", "http://localhost:8000/Utomhus_2023-05-15_min_max3.csv", (d) => {
+  const data = await d3.dsv(",", "http://localhost:8000/Utomhus.csv", (d) => {
     return {
       date: new Date(d.date),
       variant: d.variant,

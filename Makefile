@@ -1,7 +1,7 @@
 all: data server front-end
 
 data:
-	./weather.py > Utomhus_2023-05-15_min_max3.csv
+	./request.py > Utomhus.csv
 
 start-server:
 	./server.py 2>&1 > server.log &
