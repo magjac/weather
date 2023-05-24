@@ -10,3 +10,7 @@ install:
 
 start:
 	cd front-end && npm start
+
+deploy:
+	scp -rp -P 7822 front-end/build/* magjac.com:www/weather
+	scp -rp -P 7822 server.py magjac.com:www/weather
