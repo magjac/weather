@@ -8,27 +8,23 @@ import datetime
 import json
 import requests
 import sys
+import urllib
 
 hostName = "localhost"
 serverPort = 8080
 
 class WeatherServer(BaseHTTPRequestHandler):
     def do_GET(self):
+        u = urllib.parse.urlparse(self.path)
+        query = u.query
+
         url = 'https://app.netatmo.net/api/getmeasure'
-        date_begin = datetime.datetime(2023, 1, 1)
-        request = {
-            "date_begin": str(date_begin.timestamp()),
-            "scale": "1day",
-            "device_id": "70:ee:50:3f:2f:d0",
-            "module_id": "02:00:00:3e:e3:70",
-            "type": "min_temp,max_temp",
-            "real_time": True,
-            }
+        request = urllib.parse.parse_qsl(query)
         headers = {
             "Authorization": "Bearer 52d42bfc1777599b298b456c|90035caa57ecd5dbaab93dddd1fdc775",
         }
 
-        response = requests.post(url, headers=headers, json=request)
+        response = requests.post(url, headers=headers, data=request)
 
         response.raise_for_status()
 
@@ -37,19 +33,7 @@ class WeatherServer(BaseHTTPRequestHandler):
         self.send_header("Content-type", "application.json")
         self.end_headers()
 
-        self.wfile.write(bytes("date,variant,temperature\n", "utf-8"))
-
-        data = json.loads(response.text)
-        chunks = data["body"]
-        for chunk in chunks:
-            beg_time = datetime.datetime.fromtimestamp(chunk["beg_time"])
-            step_time = datetime.timedelta(seconds=chunk["step_time"])
-            values = chunk["value"]
-            current_time = beg_time
-            for [min_temp, max_temp] in values:
-                current_time = current_time + step_time
-                self.wfile.write(bytes(f"{current_time},min,{min_temp}\n", "utf-8"))
-                self.wfile.write(bytes(f"{current_time},max,{max_temp}\n", "utf-8"))
+        self.wfile.write(bytes(response.text, "utf-8"))
 
 if __name__ == '__main__':
     webServer = HTTPServer((hostName, serverPort), WeatherServer)

@@ -6,14 +6,20 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 async function fetchData() {
-  const url = process.env.NODE_ENV == "production" ? "api/" : "http://localhost:8080";
-  const data = await d3.dsv(",", url, (d) => {
-    return {
-      date: new Date(d.date),
-      variant: d.variant,
-      temperature: d.temperature,
-    };
-  });
+  //const url = 'https://app.netatmo.net/api/getmeasure'
+  const baseUrl = process.env.NODE_ENV == "production" ? "api/" : "http://localhost:8080";
+  const dateBegin = new Date(2023, 0, 1)
+  const request = {
+    "date_begin": dateBegin.getTime() / 1000,
+    "scale": "1day",
+    "device_id": "70:ee:50:3f:2f:d0",
+    "module_id": "02:00:00:3e:e3:70",
+    "type": "min_temp,max_temp",
+    "real_time": true,
+  }
+  const urlSearchparams = new URLSearchParams(request);
+  const url = `${baseUrl}?${urlSearchparams}`;
+  const data = await d3.json(url);
   return data;
 }
 
@@ -24,7 +30,30 @@ export default function App() {
   let [dummy, setDummy] = React.useState(1);
 
   if (!initialized) {
-    fetchData().then((data) => {
+    fetchData().then((d) => {
+      const chunks = d.body;
+      let data = [];
+      for (const chunk of chunks) {
+        const begTime = new Date(chunk.beg_time * 1000);
+        const stepTime = chunk.step_time * 1000;
+        const values = chunk.value;
+        let currentTime = begTime;
+        for (const [minTemp, maxTemp] of values) {
+          currentTime = new Date(currentTime.getTime() + stepTime);
+          const minItem = {
+            date: currentTime,
+            variant: "min",
+            temperature: minTemp,
+          }
+          data.push(minItem);
+          const maxItem = {
+            date: currentTime,
+            variant: "max",
+            temperature: maxTemp,
+          }
+          data.push(maxItem);
+        }
+      }
       setTemp(data);
       setDummy(dummy + 1);
     });
