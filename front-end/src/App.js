@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 async function fetchData() {
-  const url = 'http://localhost:8080'
+  const url = process.env.NODE_ENV == "production" ? "api/" : "http://localhost:8080";
   const data = await d3.dsv(",", url, (d) => {
     return {
       date: new Date(d.date),
