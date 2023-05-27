@@ -41,7 +41,7 @@ export default class Chart extends React.Component {
       <React.Fragment>
         <Box
           id="chart"
-          sx={{width: "calc(100vw - 24px)", height: "calc(100vh - 120px)"}}
+          sx={{width: "calc(100vw - 24px)", height: "calc(100vh - 174px)"}}
         >
         </Box>
       </React.Fragment>
