@@ -87,7 +87,7 @@ export default function LineChart(data, {
           .render());
 
     svg.append("g")
-        .attr("transform", `translate(0,${height - marginBottom})`)
+        .attr("transform", `translate(0,${yScale(0)})`)
         .call(xAxis);
 
     svg.append("g")

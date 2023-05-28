@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 * Add time range selection, initially deployed to http://magjac.com/weather/ on 2023-05-28.
 * Show temperature when hovering point
+* Move time axis to temperature=0
 
 ## [1.0.0] - 2023-06-06
 
