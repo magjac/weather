@@ -29,7 +29,7 @@ export default function App() {
   let [temp, setTemp] = React.useState([]);
   let [dummy, setDummy] = React.useState(1);
 
-  if (!initialized) {
+  const fetchAndShowData = () => {
     fetchData().then((d) => {
       const chunks = d.body;
       let data = [];
@@ -57,7 +57,11 @@ export default function App() {
       setTemp(data);
       setDummy(dummy + 1);
     });
+  }
+
+  if (!initialized) {
     initialized = true;
+    fetchAndShowData();
   }
 
   return (
