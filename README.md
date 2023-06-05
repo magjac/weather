@@ -10,3 +10,14 @@ cd weather
 cd front-end
 npm install
 ```
+
+## Start back-end
+```
+./server.py
+```
+
+## Start front-end
+```
+cd front-end
+npm run start
+```
