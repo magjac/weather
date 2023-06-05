@@ -1,8 +1,5 @@
 all: data server front-end
 
-data:
-	./request.py > Utomhus.csv
-
 start-server:
 	./server.py 2>&1 > server.log &
 
