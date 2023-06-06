@@ -26,6 +26,7 @@ export default class Chart extends React.Component {
       width: width,
       height: height,
       color: (variant) => variant == "max" ? red : blue,
+      title: (d) => `${d.temperature} °C`,
     });
     const existingSvg = div.select("svg");
     if (existingSvg.size() == 0) {
