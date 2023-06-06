@@ -55,7 +55,6 @@ export default function App() {
         const values = chunk.value;
         let currentTime = begTime;
         for (const [minTemp, maxTemp] of values) {
-          currentTime = new Date(currentTime.getTime() + stepTime);
           const minItem = {
             date: currentTime,
             variant: "min",
@@ -68,6 +67,7 @@ export default function App() {
             temperature: maxTemp,
           }
           data.push(maxItem);
+          currentTime = new Date(currentTime.getTime() + stepTime);
         }
       }
       setTemp(data);
