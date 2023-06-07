@@ -4,10 +4,7 @@ from http.server import BaseHTTPRequestHandler
 from http.server import HTTPServer
 from http.server import test
 
-import datetime
-import json
 import requests
-import sys
 import urllib
 
 hostName = "localhost"

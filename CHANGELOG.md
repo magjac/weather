@@ -5,13 +5,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-* Fix off by one error in date
+
+## [1.3.0] - 2023-06-07
+### Added
+* Show mean temperature with green color
+
+### Changed
+* Ensure five-degree ticks on y-axis
+
+### Fixed
+* Off by one error in date
+* Text not fully visible when hovering rightmost point
 
 ## [1.2.0] - 2023-06-06
+### Changed
 * Show also date when hovering point
 
 ## [1.1.0] - 2023-06-06
-* Add time range selection, initially deployed to http://magjac.com/weather/ on 2023-05-28.
+### Added
+* Time range selection, initially deployed to http://magjac.com/weather/ on 2023-05-28.
+
+### Changed
 * Show temperature when hovering point
 * Move time axis to temperature=0
 

@@ -16,7 +16,7 @@ async function fetchData(beginDate, endDate) {
     "scale": "1day",
     "device_id": "70:ee:50:3f:2f:d0",
     "module_id": "02:00:00:3e:e3:70",
-    "type": "min_temp,max_temp",
+    "type": "temperature,min_temp,max_temp",
     "real_time": true,
   }
   const urlSearchparams = new URLSearchParams(request);
@@ -54,7 +54,13 @@ export default function App() {
         const stepTime = chunk.step_time * 1000;
         const values = chunk.value;
         let currentTime = begTime;
-        for (const [minTemp, maxTemp] of values) {
+        for (const [meanTemp, minTemp, maxTemp] of values) {
+          const meanItem = {
+            date: currentTime,
+            variant: "mean",
+            temperature: meanTemp,
+          }
+          data.push(meanItem);
           const minItem = {
             date: currentTime,
             variant: "min",
