@@ -16,8 +16,14 @@ export default class Chart extends React.Component {
     const div = d3.select("#chart");
     const width = div.node().clientWidth;
     const height = div.node().clientHeight;
+    const green = d3.schemeTableau10[4];
     const blue = d3.schemeTableau10[0];
     const red = d3.schemeTableau10[2];
+    const colorMap = {
+      mean: green,
+      min: blue,
+      max: red,
+    };
     const svg = LineChart(data, {
       x: d => d.date,
       y: d => d.temperature,
@@ -26,7 +32,7 @@ export default class Chart extends React.Component {
       width: width,
       height: height,
       marginRight: 56, // ensure room for text shown when hovering point
-      color: (variant) => variant == "max" ? red : blue,
+      color: (variant) => colorMap[variant],
       title: (d) => `${d.temperature} °C @ ${d.date.toLocaleDateString("se-SE")}`,
     });
     const existingSvg = div.select("svg");
