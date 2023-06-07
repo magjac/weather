@@ -25,6 +25,7 @@ export default class Chart extends React.Component {
       yLabel: "Temperature",
       width: width,
       height: height,
+      marginRight: 56, // ensure room for text shown when hovering point
       color: (variant) => variant == "max" ? red : blue,
       title: (d) => `${d.temperature} °C @ ${d.date.toLocaleDateString("se-SE")}`,
     });

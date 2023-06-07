@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Fixed
 * Off by one error in date
+* Text not fully visible when hovering rightmost point
 
 ## [1.2.0] - 2023-06-06
 ### Changed
