@@ -28,12 +28,12 @@ export default class Chart extends React.Component {
       x: d => d.date,
       y: d => d.temperature,
       z: d => d.variant,
-      yLabel: "Temperature",
+      yLabel: "Rain",
       width: width,
       height: height,
       marginRight: 56, // ensure room for text shown when hovering point
       color: (variant) => colorMap[variant],
-      title: (d) => `${d.temperature} °C @ ${d.date.toLocaleDateString("se-SE")}`,
+      title: (d) => `${d.temperature} mm @ ${d.date.toLocaleDateString("se-SE")}`,
     });
     const existingSvg = div.select("svg");
     if (existingSvg.size() == 0) {

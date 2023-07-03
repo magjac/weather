@@ -15,8 +15,8 @@ async function fetchData(beginDate, endDate) {
     "date_end": endDate.getTime() / 1000,
     "scale": "1day",
     "device_id": "70:ee:50:3f:2f:d0",
-    "module_id": "02:00:00:3e:e3:70",
-    "type": "temperature,min_temp,max_temp",
+    "module_id": "05:00:00:09:94:0e",
+    "type": "sum_rain",
     "real_time": true,
   }
   const urlSearchparams = new URLSearchParams(request);
