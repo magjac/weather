@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Rename page to Emil's Weather Station @ bergetvidhandfatet
 
+### Fixed
+* Update bearer token
+
 ## [1.3.0] - 2023-06-07
 ### Added
 * Show mean temperature with green color
