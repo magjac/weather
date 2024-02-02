@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Rename page to Emil's Weather Station @ bergetvidhandfatet
 * Change favicon to cloudy weater
+* Rework using Chart.js
 
 ### Fixed
 * Update bearer token
