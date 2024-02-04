@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 * Year-by-year temperature chart. The old temperature chart is selectable through a drop-down
+* Selection of min, mean and max temperature through switches in year-by-year chart
 
 ### Changed
 * Rename page to Emil's Weather Station @ bergetvidhandfatet

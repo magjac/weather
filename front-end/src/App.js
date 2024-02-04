@@ -9,6 +9,9 @@ import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
 import Input from '@mui/material/Input';
 import MenuItem from '@mui/material/MenuItem';
+import FormGroup from '@mui/material/FormGroup';
+import { FormControlLabel } from "@mui/material";
+import { Switch } from "@mui/material";
 
 async function fetchData(beginDate, endDate) {
   //const url = 'https://app.netatmo.net/api/getmeasure'
@@ -43,6 +46,9 @@ export default function App() {
   let [beginDate, setBeginDate] = React.useState(new Date(2010, 0, 1));
   let [endDate, setEndDate] = React.useState(new Date());
   let [mode, setMode] = React.useState(temperatureYearByYearMode);
+  let [min, setMin] = React.useState(true);
+  let [mean, setMean] = React.useState(true);
+  let [max, setMax] = React.useState(true);
 
   React.useEffect(() => {
     fetchAndShowData();
@@ -50,6 +56,18 @@ export default function App() {
 
   const handleModeSelectChange = (event) => {
     setMode(event.target.value);
+  };
+
+  const handleMin = (event) => {
+    setMin(event.target.checked);
+  };
+
+  const handleMean = (event) => {
+    setMean(event.target.checked);
+  };
+
+  const handleMax = (event) => {
+    setMax(event.target.checked);
   };
 
   const handleBeginDateChange = (date) => {
@@ -138,9 +156,37 @@ export default function App() {
           />
         )}
         {mode == temperatureYearByYearMode && (
+          <FormGroup sx={{display: 'inline'}}>
+            <FormControlLabel control={
+              <Switch
+                defaultChecked={min}
+                color="min"
+                onChange={handleMin}
+              />
+            } label="Min" />
+            <FormControlLabel control={
+              <Switch
+                defaultChecked={mean}
+                color="mean"
+                onChange={handleMean}
+              />
+            } label="Mean" />
+            <FormControlLabel control={
+              <Switch
+                defaultChecked={max}
+                color="max"
+                onChange={handleMax}
+              />
+            } label="Max" />
+          </FormGroup>
+        )}
+        {mode == temperatureYearByYearMode && (
           <YearByYearChart
             data={temp}
             dummy={dummy}
+            min={min}
+            mean={mean}
+            max={max}
           />
         )}
       </Box>

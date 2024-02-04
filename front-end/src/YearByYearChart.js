@@ -47,10 +47,22 @@ export default class YearByYearChart extends React.Component {
       },
     };
 
+    const {min} = this.props;
+    const {mean} = this.props;
+    const {max} = this.props;
     let data2 = {};
     for (const d of this.props.data) {
       const year = d.date.getFullYear();
-      const seriesName = d.variant + year;
+      const seriesName = `${year} ${d.variant}`;
+      if (!min && d.variant == "min") {
+        continue;
+      }
+      if (!mean && d.variant == "mean") {
+        continue;
+      }
+      if (!max && d.variant == "max") {
+        continue;
+      }
       if (!(seriesName in data2)) {
         data2[seriesName] = [];
       }
