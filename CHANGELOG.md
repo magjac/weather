@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Selection of min, mean and max temperature through switches in year-by-year chart
 * Add pan and zoom in the x direction through mouse drag and mouse wheel to year-by-year temperature chart
 * Add pan and zoom in the x direction through mouse drag and mouse wheel to temperature chart
+* Color offset selection through slider to year-by-year temperature chart
 
 ### Changed
 * Rename page to Emil's Weather Station @ bergetvidhandfatet

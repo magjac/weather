@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormGroup from '@mui/material/FormGroup';
 import { FormControlLabel } from "@mui/material";
 import { Switch } from "@mui/material";
+import { Slider } from "@mui/material";
 
 async function fetchData(beginDate, endDate) {
   //const url = 'https://app.netatmo.net/api/getmeasure'
@@ -49,6 +50,7 @@ export default function App() {
   let [min, setMin] = React.useState(true);
   let [mean, setMean] = React.useState(true);
   let [max, setMax] = React.useState(true);
+  let [colorOffset, setColorOffset] = React.useState(0);
 
   React.useEffect(() => {
     fetchAndShowData();
@@ -68,6 +70,10 @@ export default function App() {
 
   const handleMax = (event) => {
     setMax(event.target.checked);
+  };
+
+  const handleColorOffset = (event, value) => {
+    setColorOffset(value);
   };
 
   const handleBeginDateChange = (date) => {
@@ -178,6 +184,26 @@ export default function App() {
                 onChange={handleMax}
               />
             } label="Max" />
+            <FormControlLabel
+              sx={{
+                paddingLeft: "20px",
+              }}
+              control={
+                <Slider
+                  sx={{
+                    width: "300px",
+                    marginRight: "12px",
+                  }}
+                  defaultValue={colorOffset}
+                  valueLabelDisplay="auto"
+                  // shiftStep={1}
+                  step={1}
+                  marks
+                  min={0}
+                  max={19}
+                  onChange={handleColorOffset}
+                />
+              } label="Color offset" />
           </FormGroup>
         )}
         {mode == temperatureYearByYearMode && (
@@ -187,6 +213,7 @@ export default function App() {
             min={min}
             mean={mean}
             max={max}
+            colorOffset={colorOffset}
           />
         )}
       </Box>

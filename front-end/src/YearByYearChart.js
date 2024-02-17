@@ -19,6 +19,8 @@ ChartJS.register(zoomPlugin);
 
 export default class YearByYearChart extends React.Component {
   render() {
+    const { colorOffset } = this.props;
+
     const options = {
       maintainAspectRatio: false,
       scales: {
@@ -45,6 +47,7 @@ export default class YearByYearChart extends React.Component {
       plugins: {
         autocolors: {
           enabled: true,
+          offset: colorOffset,
         },
         zoom: {
           zoom: {
@@ -109,6 +112,7 @@ export default class YearByYearChart extends React.Component {
         >
           <Scatter
             options={options}
+            redraw={true}
             data={data}
           >
           </Scatter>
