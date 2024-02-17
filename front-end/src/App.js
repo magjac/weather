@@ -46,13 +46,13 @@ export default function App() {
   let [dummy, setDummy] = React.useState(1);
   let [beginDate, setBeginDate] = React.useState(new Date(2010, 0, 1));
   let [endDate, setEndDate] = React.useState(new Date());
-  let [mode, setMode] = React.useState(temperatureYearByYearMode);
-  let [min, setMin] = React.useState(true);
-  let [mean, setMean] = React.useState(true);
-  let [max, setMax] = React.useState(true);
-  let [colorOffset, setColorOffset] = React.useState(0);
-  let [pointStyle, setPointStyle] = React.useState(false);
-  let [showLine, setShowLine] = React.useState(true);
+  let [mode, setMode] = React.useState(localStorage.getItem('mode') || temperatureYearByYearMode);
+  let [min, setMin] = React.useState((localStorage.getItem('min') || 'true') == 'true');
+  let [mean, setMean] = React.useState((localStorage.getItem('mean') || 'true') == 'true');
+  let [max, setMax] = React.useState((localStorage.getItem('max') || 'true') == 'true');
+  let [colorOffset, setColorOffset] = React.useState(+localStorage.getItem('colorOffset') || 0);
+  let [pointStyle, setPointStyle] = React.useState((localStorage.getItem('pointStyle') || 'false') == 'true');
+  let [showLine, setShowLine] = React.useState((localStorage.getItem('showLine') || 'true') == 'true');
 
   React.useEffect(() => {
     fetchAndShowData();
@@ -60,30 +60,37 @@ export default function App() {
 
   const handleModeSelectChange = (event) => {
     setMode(event.target.value);
+    localStorage.setItem('mode', event.target.value);
   };
 
   const handleMin = (event) => {
     setMin(event.target.checked);
+    localStorage.setItem('min', event.target.checked);
   };
 
   const handleMean = (event) => {
     setMean(event.target.checked);
+    localStorage.setItem('mean', event.target.checked);
   };
 
   const handleMax = (event) => {
     setMax(event.target.checked);
+    localStorage.setItem('max', event.target.checked);
   };
 
   const handleColorOffset = (event, value) => {
     setColorOffset(value);
+    localStorage.setItem('colorOffset', value.toString());
   };
 
   const handlePointStyle = (event) => {
     setPointStyle(event.target.checked);
+    localStorage.setItem('pointStyle', event.target.checked);
   };
 
   const handleShowLine = (event) => {
     setShowLine(event.target.checked);
+    localStorage.setItem('showLine', event.target.checked);
   };
 
   const handleBeginDateChange = (date) => {
