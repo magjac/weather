@@ -12,9 +12,9 @@ import {
 import zoomPlugin from 'chartjs-plugin-zoom';
 import { Scatter } from "react-chartjs-2";
 import 'chartjs-adapter-luxon';
-import { Colors } from 'chart.js';
+import autocolors from 'chartjs-plugin-autocolors';
 
-ChartJS.register(TimeScale, LinearScale, PointElement, LineElement, Tooltip, Legend, Colors);
+ChartJS.register(TimeScale, LinearScale, PointElement, LineElement, Tooltip, Legend, autocolors);
 ChartJS.register(zoomPlugin);
 
 export default class YearByYearChart extends React.Component {
@@ -43,8 +43,8 @@ export default class YearByYearChart extends React.Component {
         },
       },
       plugins: {
-        colors: {
-          forceOverride: true,
+        autocolors: {
+          enabled: true,
         },
         zoom: {
           zoom: {

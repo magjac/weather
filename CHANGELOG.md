@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Rename page to Emil's Weather Station @ bergetvidhandfatet
 * Change favicon to cloudy weater
 * Rework using Chart.js
+* Use unique colors in year-by-year temperature chart
 
 ### Fixed
 * Update bearer token
