@@ -51,6 +51,8 @@ export default function App() {
   let [mean, setMean] = React.useState(true);
   let [max, setMax] = React.useState(true);
   let [colorOffset, setColorOffset] = React.useState(0);
+  let [pointStyle, setPointStyle] = React.useState(false);
+  let [showLine, setShowLine] = React.useState(true);
 
   React.useEffect(() => {
     fetchAndShowData();
@@ -74,6 +76,14 @@ export default function App() {
 
   const handleColorOffset = (event, value) => {
     setColorOffset(value);
+  };
+
+  const handlePointStyle = (event) => {
+    setPointStyle(event.target.checked);
+  };
+
+  const handleShowLine = (event) => {
+    setShowLine(event.target.checked);
   };
 
   const handleBeginDateChange = (date) => {
@@ -204,6 +214,18 @@ export default function App() {
                   onChange={handleColorOffset}
                 />
               } label="Color offset" />
+            <FormControlLabel control={
+              <Switch
+                defaultChecked={pointStyle}
+                onChange={handlePointStyle}
+              />
+            } label="Points" />
+            <FormControlLabel control={
+              <Switch
+                defaultChecked={showLine}
+                onChange={handleShowLine}
+              />
+            } label="Lines" />
           </FormGroup>
         )}
         {mode == temperatureYearByYearMode && (
@@ -214,6 +236,8 @@ export default function App() {
             mean={mean}
             max={max}
             colorOffset={colorOffset}
+            pointStyle={pointStyle}
+            showLine={showLine}
           />
         )}
       </Box>

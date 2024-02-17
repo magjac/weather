@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Add pan and zoom in the x direction through mouse drag and mouse wheel to year-by-year temperature chart
 * Add pan and zoom in the x direction through mouse drag and mouse wheel to temperature chart
 * Color offset selection through slider to year-by-year temperature chart
+* Selection of points and lines to year-by-year temperature chart
 
 ### Changed
 * Rename page to Emil's Weather Station @ bergetvidhandfatet

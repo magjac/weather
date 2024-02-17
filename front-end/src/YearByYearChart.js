@@ -70,6 +70,8 @@ export default class YearByYearChart extends React.Component {
     const {min} = this.props;
     const {mean} = this.props;
     const {max} = this.props;
+    const {pointStyle} = this.props;
+    const {showLine} = this.props;
     let data2 = {};
     for (const d of this.props.data) {
       const year = d.date.getFullYear();
@@ -97,8 +99,8 @@ export default class YearByYearChart extends React.Component {
             year.setFullYear(1970);
             return { x: year.getTime(), y: d.temperature }
           }),
-          pointStyle: false,
-          showLine: true,
+          pointStyle: pointStyle,
+          showLine: showLine,
           borderWidth: 1,
         }
       }),
