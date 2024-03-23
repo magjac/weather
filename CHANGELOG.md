@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Update bearer token
 * Add missing dayjs dependency
 * Update bearer token again
+* Update bearer token again
 
 ## [1.3.0] - 2023-06-07
 ### Added

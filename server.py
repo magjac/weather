@@ -18,7 +18,7 @@ class WeatherServer(BaseHTTPRequestHandler):
         url = 'https://app.netatmo.net/api/getmeasure'
         request = urllib.parse.parse_qsl(query)
         headers = {
-            "Authorization": "Bearer 52d42bfc1777599b298b456c|6ddca135f20a4cdc5ed3ddad7a0e9f9b",
+            "Authorization": "Bearer 52d42bfc1777599b298b456c|24fc90e3077d50c39b346c9bc4beae1f",
         }
 
         response = requests.post(url, headers=headers, data=request)
