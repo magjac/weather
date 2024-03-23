@@ -13,6 +13,15 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    min: {
+      main: '#4e79a7',
+    },
+    mean: {
+      main: "#59a14f",
+    },
+    max: {
+      main: "#e15759",
+    },
   },
 });
 

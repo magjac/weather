@@ -1,56 +1,107 @@
-import * as d3 from "d3";
 import Box from '@mui/material/Box';
-import LineChart from "./linechart.js"
 import * as React from 'react';
+import {
+  Chart as ChartJS,
+  LinearScale,
+  TimeScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Scatter } from "react-chartjs-2";
+import 'chartjs-adapter-luxon';
+
+ChartJS.register(TimeScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 export default class Chart extends React.Component {
-  componentDidMount() {
-    this.drawChart();
-  }
-  componentDidUpdate() {
-    this.drawChart();
-  }
-
-  drawChart() {
-    const {data} = this.props;
-    const div = d3.select("#chart");
-    const width = div.node().clientWidth;
-    const height = div.node().clientHeight;
-    const green = d3.schemeTableau10[4];
-    const blue = d3.schemeTableau10[0];
-    const red = d3.schemeTableau10[2];
-    const colorMap = {
-      mean: green,
-      min: blue,
-      max: red,
-    };
-    const svg = LineChart(data, {
-      x: d => d.date,
-      y: d => d.temperature,
-      z: d => d.variant,
-      yLabel: "Temperature",
-      width: width,
-      height: height,
-      marginRight: 56, // ensure room for text shown when hovering point
-      color: (variant) => colorMap[variant],
-      title: (d) => `${d.temperature} °C @ ${d.date.toLocaleDateString("se-SE")}`,
-    });
-    const existingSvg = div.select("svg");
-    if (existingSvg.size() == 0) {
-      div.node().appendChild(svg);
-    }
-    else {
-      div.node().replaceChild(svg, existingSvg.node());
-    }
-  }
-
   render() {
+    const options = {
+      maintainAspectRatio: false,
+      scales: {
+        x: {
+          type: 'time',
+          time: {
+            // Luxon format string
+            tooltipFormat: 'DD T',
+            unit: 'month',
+          },
+        },
+        y: {
+          beginAtZero: true,
+          min: -25,
+          max: 35,
+          ticks: {
+            stepSize: 5,
+          },
+        },
+      },
+      plugins: {
+        zoom: {
+          zoom: {
+            wheel: {
+              enabled: true,
+            },
+            pinch: {
+              enabled: true
+            },
+            mode: 'x',
+          },
+          pan: {
+            enabled: true,
+            mode: 'x',
+          },
+        },
+      },
+    };
+
+    const meanData = this.props.data.filter((d) => d.variant == 'mean');
+    const minData = this.props.data.filter((d) => d.variant == 'min');
+    const maxData = this.props.data.filter((d) => d.variant == 'max');
+    const data = {
+      datasets: [
+        {
+          label: 'min',
+          data: minData.map((d) => ({ x: d.date.getTime(), y: d.temperature })),
+          pointStyle: false,
+          showLine: true,
+          backgroundColor: '#4e79a7',
+          borderColor: '#4e79a7', // blue
+          borderWidth: 1,
+        },
+        {
+          label: 'mean',
+          data: meanData.map((d) => ({ x: d.date.getTime(), y: d.temperature })),
+          pointStyle: false,
+          showLine: true,
+          backgroundColor: '#59a14f',
+          borderColor: '#59a14f', // green
+          borderWidth: 1,
+        },
+        {
+          label: 'max',
+          data: maxData.map((d) => ({ x: d.date.getTime(), y: d.temperature })),
+          pointStyle: false,
+          showLine: true,
+          backgroundColor: '#e15759',
+          borderColor: '#e15759', // red
+          borderWidth: 1,
+        },
+      ],
+    };
+
     return (
       <React.Fragment>
         <Box
           id="chart"
           sx={{width: "calc(100vw - 24px)", height: "calc(100vh - 174px)"}}
         >
+          <Scatter
+            options={options}
+            data={data}
+          >
+          </Scatter>
+
         </Box>
       </React.Fragment>
       );
