@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [2.0.0] - 2024-03-23
 ### Added
 * Year-by-year temperature chart. The old temperature chart is selectable through a drop-down
 * Selection of min, mean and max temperature through switches in year-by-year chart
@@ -54,7 +56,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
  * First version, initially deployed to http://magjac.com/weather/ on 2023-05-24.
 
-[Unreleased]: https://github.com/magjac/weather/compare/v1.3.0...HEAD
+[Unreleased]: https://github.com/magjac/weather/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/magjac/weather/compare/v1.3.0...v2.0.0
 [1.3.0]: https://github.com/magjac/weather/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/magjac/weather/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/magjac/weather/compare/v1.0.0...v1.1.0
